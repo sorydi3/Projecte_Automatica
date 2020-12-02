@@ -6,6 +6,8 @@ function SORTIDA = virtualPatient_Hovorka(ENTRADA1, ENTRADA2)
     k12 = 0.066; % Constant de transferència de glucosa del compartiment accessible al no accessible
     ka1 = 0.006; % Constants de desactivació dels efectes de l’insulina 
     ka2 = 0.06; % ...
+    
+    
     ka3 = 0.03; % ...
     ke = 0.138; % Eliminació d'insulina en plasma
     VI = 0.12*BW; % Volum de distribució d'insulina
