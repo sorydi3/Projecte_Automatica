@@ -1,5 +1,6 @@
 # Projecte_Automatica
-  To run the project, for now it works with the following configuration.
+  - "app.mlapp" to delete
+  - To run the project, for now it works with the following configuration.
   
 ## 1. Simulation Tab
   - Open loop (test: CR{30}, basal{0.24})
