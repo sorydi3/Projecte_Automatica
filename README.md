@@ -7,7 +7,7 @@
   
 ## 2. Scenario Tab
   - Patients list (test: 60_1, 60_12, 60_14)
-  From the table:
+  - From the table:
     - Meal intake (test: [30 40 25])
     - Meal time (test: [7 13 20])
     - Simulation time (test: 1440)
