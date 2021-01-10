@@ -8,7 +8,6 @@ p=polyfit([110 180 300 400],[0 20 40 60],3);
 Max_gli = polyval(p,Max_gli);
 
 
-
 figure
 hold on
 %fill zone C
@@ -29,15 +28,15 @@ X_pa = [0 20 20 0]; Y_pa = [0 0 20 20]; fill(X_pa,Y_pa,[0 1 0]);
 X_pbpiu = [0 20 20 0]; Y_pbpiu = [20 20 40 40]; fill(X_pbpiu,Y_pbpiu,[7/255 135/255 0/255]);
 %fill zone C+
 X_pcpiu = [0 20 20 0]; Y_pcpiu = [40 40 60 60]; fill(X_pcpiu,Y_pcpiu,[1 1 0]);
-text(10,10,'\textbf{A}','HorizontalAlignment','center','Interpreter','Latex','Fontsize',15);
-text(10,30,'\textbf{Upper B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(10,50,'\textbf{Upper C}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(30,10,'\textbf{Lower B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(30,30,'\textbf{B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(30,50,'\textbf{Upper D}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(50,10,'\textbf{Lower C}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(50,30,'\textbf{Lower D}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
-text(50,50,'\textbf{E}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',15);
+text(10,10,'\textbf{A}','HorizontalAlignment','center','Interpreter','Latex','Fontsize',8);
+text(10,30,'\textbf{Upper B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(10,50,'\textbf{Upper C}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(30,10,'\textbf{Lower B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(30,30,'\textbf{B}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(30,50,'\textbf{Upper D}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(50,10,'\textbf{Lower C}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(50,30,'\textbf{Lower D}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
+text(50,50,'\textbf{E}','HorizontalAlignment','center','Interpreter','Latex' ,'Fontsize',8);
 set(gca,'YTick',[0 20 40 60])
 set(gca,'XTick',[0 20 40 60])
 set(gca,'XTickLabel',{'>110' '90' '70' '<50'})

@@ -2,7 +2,6 @@ set(0,'DefaultLegendAutoUpdate','off');
 bw = 60:10:100; % pes a utilitzar
 insulina = 0.2:0.01:1; % infusions d'insulina a utilitzar
 
-
 % Matrius de resultats
 out = [];
 results = zeros(2,length(insulina),length(bw));

@@ -1,4 +1,4 @@
-function mainCL(controller)
+function G = mainCL(controller)
 % Iniciem el sistema a estat estacionari
 xguess = ones(9,1);
 [x,fval,exitflag] = fsolve(@(x) model_hovorkaSS(x, controller.basal*1000/60, controller.pacient),xguess);
@@ -24,8 +24,7 @@ for i = 1:controller.sim_time
 end
 
 % Mostrem resultats per pantalla
-i = size(1:controller.sim_time);
-j = hist_states(:,9)*18;
+G = hist_states(:,9)*18;
 plot((1:controller.sim_time)./60,hist_states(:,9)*18); hold on;
 xlim([0 24]);
 limitsY = get(gca,'ylim');

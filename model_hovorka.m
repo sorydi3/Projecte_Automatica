@@ -1,4 +1,4 @@
-function F = model_hovorka(t, x, u, params, conv)
+function F = model_hovorka(t, x, u, params)
 % Assignem noms adients a les variables que formen un pacient
 k12 = params(1);
 ka1 = params(2);
@@ -56,7 +56,7 @@ F(6) = -ka3*x3 + kb3*I; % ·x3(t) = -ka3*x3(t) + kb3*I(t)
 F(7) = -x1*Q1 + k12*Q2 - F01c - FR +  G2/tmaxG + EGP0*(1-x3); % ·Q1(t) = -x1(t)*Q1(t) + k12*Q2(t) - F01c(t) - FR(t) + Ug(t) + EGP0*(1-x3(t))
 F(8) = x1*Q1 - k12*Q2 - x2*Q2; % ·Q2(t) = x1(t)*Q1(t) - k12*Q2(t) - x2(t)*Q2(t)
 F(9) = (1/tau)*( Q1/Vg - IG ); % ·IG(t) = (1/tau)*( Q1(t)/Vg - IG(t) )
-F(10) = -G1/tmaxG + u(2)/conv*Ag; % ·G1(t)
+F(10) = -G1/tmaxG + u(2)/0.18*Ag; % ·G1(t)
 F(11) = (G1 - G2)/tmaxG; % ·G2(t)
 
 F = F';
