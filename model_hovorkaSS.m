@@ -1,4 +1,4 @@
-function F = model_hovorkaSS(x, u, params)
+ function F = model_hovorkaSS(x, u, params)
 % Assignem noms adients a les variables que formen un pacient
 k12 = params(1);
 ka1 = params(2);
