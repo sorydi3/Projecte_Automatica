@@ -1,23 +1,47 @@
-function [controller,u] = PID(sim_time,u,controller) 
-    %disp(controller)
-    Pn=controller.Kp*(controller.SG - controller.target);
-    if (controller.Ti*(controller.SG-controller.target)) == 0
-        In = controller.In_1;
+function [c,u] = PID(n,u,c) 
+    size_cho = size(c.temps_cho);
+    if c.index_menjar <= size_cho(2)
+        if n == c.temps_cho(c.index_menjar)*60
+            if n == 1
+                In_1 = 0;
+                SGn_1 = 0;
+                IDn_1 = 0;
+                Ipn_1 = c.inital_BG;
+                Ipn_2 = c.inital_BG;
+            elseif n == 2
+                In_1 = c.I(n-1);
+                SGn_1 = c.SG(n-1);
+                IDn_1 = c.ID(n-1);
+                Ipn_1 = c.Ip(n-1);
+                Ipn_2 = c.inital_BG;
+            else
+                In_1 = c.I(n-1);
+                SGn_1 = c.SG(n-1);
+                IDn_1 = c.ID(n-1);
+                Ipn_1 = c.Ip(n-1);
+                Ipn_2 = c.Ip(n-2);
+            end
+
+            c.P(n)=c.Kp*(c.SG(n) - c.target);
+            if (c.Ti*(c.SG(n)-c.target)) == 0
+                c.I(n) = In_1;
+            else
+                c.I(n)=In_1+c.Kp/(c.Ti*(c.SG(n)-c.target));
+            end
+            c.D(n)=c.Kp*c.Td*(c.SG(n) - SGn_1/n);
+            c.PID(n) = c.P(n)+c.I(n)+c.D(n);
+            c.Ip(n)=c.k0*IDn_1+c.k1*Ipn_1-c.k2*Ipn_2;
+            c.ID(n) =(1+c.gamma)*c.PID(n)-(c.gamma*Ipn_1);
+
+            u(1)=c.grams_cho(c.index_menjar);
+            u(2)=-c.ID(n);
+
+            c.index_menjar = c.index_menjar + 1;
+
+        end
     else
-        In=controller.In_1+controller.Kp/(controller.Ti*(controller.SG-controller.target));
+        u(1)=0;
+        u(2)=-c.ID(n);
     end
-    Dn=controller.Kp*controller.Td*(controller.SG - controller.SG_1/1);
-    PIDn =Pn+In+Dn;
-    Ipn=controller.k0*controller.ID_1+controller.k1*controller.Ip_1-controller.k2*controller.Ip_2;
-    if isnan(Ipn)
-        disp(controller)
-    end
-    IDn =(1+controller.gamma)*PIDn-(controller.gamma*controller.Ip_1);
-    controller.Ip_2=controller.In_1;
-    controller.Ip_1=Ipn;
-    controller.In_1=In;
-    controller.ID_1=IDn;
-    controller.SG_1=controller.SG;
-    u(2)=0;
-    u(1)=IDn;
+    %disp(n)
 end
