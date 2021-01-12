@@ -30,7 +30,7 @@ for i = 1:controller.sim_time
 end
 
 % Mostrem resultats per pantalla
-G = hist_states(:,9)*18;
+G = hist_states;
 plot((1:controller.sim_time)./60,hist_states(:,9)*18); hold on;
 xlim([0 24]);
 limitsY = get(gca,'ylim');
