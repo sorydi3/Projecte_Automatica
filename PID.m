@@ -31,17 +31,16 @@ function [c,u] = PID(n,u,c)
             c.D(n)=c.Kp*c.Td*(c.SG(n) - SGn_1/n);
             c.PID(n) = c.P(n)+c.I(n)+c.D(n);
             c.Ip(n)=c.k0*IDn_1+c.k1*Ipn_1-c.k2*Ipn_2;
-            c.ID(n) =(1+c.gamma)*c.PID(n)-(c.gamma*Ipn_1);
+            c.ID(n) =(1+c.gamma)*c.PID(n)-(c.gamma*Ipn_1); %(u/m)
 
+            u(2)=c.ID(n);
             u(1)=c.grams_cho(c.index_menjar);
-            u(2)=-c.ID(n);
-
             c.index_menjar = c.index_menjar + 1;
 
         end
     else
+        u(2)=c.ID(n);
         u(1)=0;
-        u(2)=-c.ID(n);
     end
-    %disp(n)
+    disp(u)
 end

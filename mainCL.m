@@ -5,7 +5,7 @@ xguess = ones(9,1);
 [x,~,~] = fsolve(@(x) model_hovorkaSS(x, controller.basal*1000/60, controller.pacient),xguess);
 controller.Kp = 0.8;
 x(9) = controller.initial_BG;
-controller.SG(1)=x(9)*18;
+controller.SG(1)=x(9);
 Xkm1 = [x; 0; 0]'; % + estats de l'absorcio de carbohidrats
 
 % Protocol de menjars
@@ -15,18 +15,20 @@ controller.index_menjar = 1*(~isempty(controller.grams_cho));
 hist_states = [];
 u = zeros(1,2);
 params.meal_time = 0;
+%controler.target=1000;
 for i = 1:controller.sim_time
     if strcmp(controller.tipus,'OL') == 1
         [u,controller,params] = OL(i,u,controller,params);
     elseif strcmp(controller.tipus,'PID') == 1
         [controller,u] = PID(i,u,controller);
-        u = u*60/1000;
+        %u = u*60/1000;
     end
     
     [~,Xhov] = ode45(@(t,x) model_hovorka(t, x, u, controller.pacient), [i i+1], Xkm1); 
-    controller.SG(i)=x(9)*18; %%update SG for the PID controller
+    controller.SG(i)=x(9); %%update SG for the PID controller
     Xkm1 = Xhov(end,:)';
     hist_states = [hist_states; Xkm1'];
+    disp(hist_states);
 end
 
 % Mostrem resultats per pantalla
