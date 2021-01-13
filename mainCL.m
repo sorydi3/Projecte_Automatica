@@ -23,7 +23,7 @@ for i = 1:controller.sim_time
         if controller.index_menjar <= size_cho(2)
             if i == controller.temps_cho(controller.index_menjar)*60
                 disp(i)
-                u(1) = controller.grams_cho(controller.index_menjar);
+                u(2) = controller.grams_cho(controller.index_menjar);
                 controller.index_menjar = controller.index_menjar + 1;
             end
         end
@@ -33,7 +33,6 @@ for i = 1:controller.sim_time
     controller.SG(i+1)=Xhov(end,9)*18; %%update SG for the PID controller
     Xkm1 = Xhov(end,:)';
     hist_states = [hist_states; Xkm1'];
-    disp(hist_states);
 end
 
 % Mostrem resultats per pantalla
