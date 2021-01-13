@@ -1,4 +1,4 @@
-function CVGA(G)
+function S = CVGA(G)
 
 for i=1: size(G,1)
     Min_gli(i) = prctile(G(i,:),2.5);
@@ -41,7 +41,7 @@ set(gca,'YTick',[0 20 40 60])
 set(gca,'XTick',[0 20 40 60])
 set(gca,'XTickLabel',{'>110' '90' '70' '<50'})
 set(gca,'YTickLabel',{'<110' '180' '300' '>400'})
-scatter(min(max(110 - Min_gli,0),60),min(max(Max_gli,0),60),'ow','filled');
+S = scatter(min(max(110 - Min_gli,0),60),min(max(Max_gli,0),60),'ow','filled');
 xlabel('Minimum BG'),ylabel('Maximum BG')
 grid on
 box on
