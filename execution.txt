@@ -1,0 +1,57 @@
+EXECUTION
+....Simulation block....
+	-- Closed loop = false
+		· CR (test: 30)
+		· basal (test: 0.24)
+	-- Closed loop = true
+		· CR (test: 30)
+		· basal (test: 0.24)
+		· Controller type (test: PID)
+		· Controller values:
+			· Choose existent one (test: values)
+			· Add new controller values (test:
+				· Kp = 0.004
+				· Ti = 450
+				· Td = 90
+				· Gamma = 0.5
+				· k1 = 1.966
+				· k2 = 0.966
+				· Target = 90
+
+....Scenario block....
+	-- Import scenario = true
+		· Choose extistent one (test: scenario7.mat)
+	-- Import scenario = false
+		· Choose X patients (test: 60_09, 60_1, 60_13, 60_14) and add to simulation
+		· Initial BG (test: 120)
+		· Meal intake (test: 30 40 25)
+		· Meal time (test: 7 13 20)
+		· Meals duration not implemented
+		· Simulation time to 1.
+	-- Save scenario if wanted
+	
+....Results block....
+	-- Save results if wanted
+	-- Implemented outputs:
+		· Graphic output
+			(execute only individual metrics or only populational metrics)
+			º Test 1:
+				· Show individual CVGA
+				· Show individual patient CGM
+				· Time > 250 mg/dl
+				· Time > 180 mg/dl
+				· Time 70-180 mg/dl
+				· Time < 70 mg/dl
+				· Time < 54 mg/dl
+				· Mean glucose
+			º Test 2:
+				· Show population patient CGM
+				· Time > 250 mg/dl
+				· Time > 180 mg/dl
+				· Time 70-180 mg/dl
+				· Time < 70 mg/dl
+				· Time < 54 mg/dl
+				· Mean glucose
+	-- (Outputs not mentioned are not implemented).
+	
+....RUN....

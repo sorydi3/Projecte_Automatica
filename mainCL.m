@@ -1,12 +1,11 @@
 function [controller,G] = mainCL(controller)
-% Iniciem el sistema a estat estacionari
+% Inicializate system
 xguess = ones(9,1);
-%controller = init_parameters_pid(controller);
 [x,~,~] = fsolve(@(x) model_hovorkaSS(x, controller.basal*1000/60, controller.pacient),xguess);
 x(9) = controller.initial_BG/18;
 controller.SG(1)=x(9)*18;
-Xkm1 = [x; 0; 0]'; % + estats de l'absorcio de carbohidrats
-% Protocol de menjars
+Xkm1 = [x; 0; 0]';
+% Meals protocols
 controller.num_menjars = length(controller.grams_cho);
 controller.index_menjar = 1*(~isempty(controller.grams_cho));
 
@@ -30,7 +29,7 @@ for i = 1:controller.sim_time
     end
     
     [~,Xhov] = ode45(@(t,x) model_hovorka(t, x, u, controller.pacient), [i i+1], Xkm1); 
-    controller.SG(i+1)=Xhov(end,9)*18; %%update SG for the PID controller
+    controller.SG(i+1)=Xhov(end,9)*18; %update SG for the PID controller
     Xkm1 = Xhov(end,:)';
     hist_states = [hist_states; Xkm1'];
 end
