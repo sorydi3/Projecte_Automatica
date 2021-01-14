@@ -45,3 +45,4 @@ S = scatter(min(max(110 - Min_gli,0),60),min(max(Max_gli,0),60),'ow','filled');
 xlabel('Minimum BG'),ylabel('Maximum BG')
 grid on
 box on
+hold off
