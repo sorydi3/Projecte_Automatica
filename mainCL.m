@@ -35,11 +35,5 @@ for i = 1:controller.sim_time
     hist_states = [hist_states; Xkm1'];
 end
 
-% Mostrem resultats per pantalla
 G = hist_states;
-plot((1:controller.sim_time)./60,hist_states(:,9)*18); hold on;
-xlim([0 24]);
-limitsY = get(gca,'ylim');
-X = [0 0 controller.sim_time/60 controller.sim_time/60];
-Y = [70 180 180 70]; fill(X,Y,'g','FaceAlpha',0.15,'EdgeAlpha',0.1);
-xlabel('Time (h)'); ylabel('G (mg/dl)');
+end
